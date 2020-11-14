@@ -6,7 +6,7 @@ While this program will work for other virtual piano sites/games, features such 
 The program is developed for and on Windows 10, and may encounter issues on other OSs.
 
 ## Instructions for use:
-1. Turn on piano and connect the MIDI cable to the computer.
+1. Turn on MIDI device and connect the MIDI cable to the computer.
 2. Boot the .py and select the MIDI from the detected input devices.
 3. Change settings by hitting "2", or start the program by hitting "1".
 
