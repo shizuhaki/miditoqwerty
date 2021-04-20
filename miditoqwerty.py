@@ -64,24 +64,21 @@ def select_port():
     print("Selected " + inputports[selectedport])
     return inputports[selectedport]
 
-
-# velocity index binary search
+  
+# velocity index binary search (fixed)
 def find_velocity_key(velocity):
     minimum = 0
     maximum = len(velocityList) - 1
     while minimum <= maximum:
-        index = floor((minimum + maximum) / 2)
+        index = (minimum + maximum) // 2
         if index == (0 or len(velocityList) - 1):
             break
-        elif velocity >= velocityList[index]:
-            if velocity <= velocityList[index + 1]:
-                if velocity == velocityList[index + 1]:
-                    index = index + 1
-                break
-            else:
-                minimum = index
-        elif velocity < velocityList[index]:
-            maximum = index
+        if velocityList[index] < velocity:
+            minimum = index + 1
+        elif velocityList[index] > velocity:
+            maximum = index - 1
+        else:
+            break
     return velocityMap[index]
 
 
