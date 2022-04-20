@@ -23,6 +23,7 @@ LowNotes = "1234567890qwert"
 HighNotes = "yuiopasdfghj"
 
 sustainToggle = False
+lastVelocity = None
 MainLoop = True
 CloseThread = False
 
@@ -64,8 +65,8 @@ def select_port():
     print("Selected " + inputports[selectedport])
     return inputports[selectedport]
 
-  
-# velocity index binary search (fixed)
+
+# velocity index binary search
 def find_velocity_key(velocity):
     minimum = 0
     maximum = len(velocityList) - 1
@@ -93,13 +94,15 @@ def simulate_key(type, note, velocity):
     except:
         pass
     if type == 'note_on':
-
         if SavableSettings["simulateVelocity"]:
             velocitykey = find_velocity_key(velocity)
-            press('alt')
-            press(velocitykey)
-            release(velocitykey)
-            release('alt')
+            global lastVelocity
+            if velocitykey != lastVelocity:
+                press('alt')
+                press(velocitykey)
+                release(velocitykey)
+                release('alt')
+                lastVelocity = velocitykey
 
         if 0 <= note - 36 <= 60:
             if SavableSettings["noDoubles"]:
